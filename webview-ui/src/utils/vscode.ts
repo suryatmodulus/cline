@@ -32,8 +32,16 @@ class VSCodeAPIWrapper {
 	public postMessage(message: WebviewMessage) {
 		if (this.vsCodeApi) {
 			this.vsCodeApi.postMessage(message)
+		} else if (window.__is_intellij__) {
+			console.log("Intellij event handler: " + JSON.stringify(message))
+			const handler =
+				window.jsEventHandler ||
+				((message: unknown) => {
+					console.log("IntelliJ handler not found, logging message:", JSON.stringify(message))
+				})
+			handler(JSON.stringify(message))
 		} else {
-			console.log(message)
+			console.log("postMessage fallback: " + JSON.stringify(message))
 		}
 	}
 
