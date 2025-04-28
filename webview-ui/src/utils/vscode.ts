@@ -10,6 +10,13 @@ import type { WebviewApi } from "vscode-webview"
  * dev server by using native web browser features that mock the functionality
  * enabled by acquireVsCodeApi.
  */
+declare global {
+	interface Window {
+		__is_intellij__?: boolean
+		jsEventHandler?: (event: any) => void
+	}
+}
+
 class VSCodeAPIWrapper {
 	private readonly vsCodeApi: WebviewApi<unknown> | undefined
 
