@@ -122,7 +122,7 @@ const copyWasmFiles = {
 // Base configuration shared between extension and standalone builds
 const baseConfig = {
 	bundle: true,
-	minify: production,
+	minify: false,
 	sourcemap: !production,
 	logLevel: "silent",
 	define: {
