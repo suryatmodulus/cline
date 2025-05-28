@@ -59,6 +59,7 @@ class SecretStore {
 	constructor() {
 		this.filePath = path.join(DATA_DIR, "secrets.json")
 		this.load()
+		log("SecretStore initialized with:", JSON.stringify(Object.fromEntries(this.store), null, 2))
 	}
 
 	private load(): void {

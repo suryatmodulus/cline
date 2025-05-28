@@ -275,10 +275,12 @@ export const ExtensionStateContextProvider: React.FC<{
 	// Subscribe to state updates using the new gRPC streaming API
 	useEffect(() => {
 		// Set up state subscription
+		console.log("sjfsjf starting subscribeToState")
 		stateSubscriptionRef.current = StateServiceClient.subscribeToState(
 			{},
 			{
 				onResponse: (response) => {
+					console.log("sjfsjf starting subscribeToState response: " + JSON.stringify(response).substring(0, 200))
 					if (response.stateJson) {
 						try {
 							const stateData = JSON.parse(response.stateJson) as ExtensionState
