@@ -52,7 +52,8 @@
 			"env": {
 				"GRPC_TRACE": "all",
 				"GRPC_VERBOSITY": "DEBUG",
-				"NODE_PATH": "${workspaceFolder}/dist-standalone/node_modules"
+				"NODE_PATH": "${workspaceFolder}/dist-standalone/node_modules",
+				"DATA_DIR": "/Users/sjf/intellij-plugin/build/idea-sandbox/IC-2024.2.5/system/cline/data"
 			},
 			"program": "standalone.js"
 		}
