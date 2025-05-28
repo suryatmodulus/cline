@@ -313,7 +313,7 @@ registerAllMethods()`
 
 		// Write the index.ts file
 		await fs.writeFile(indexFile, indexContent)
-		console.log(chalk.green(`Generated ${indexFile}`))
+		//console.log(chalk.green(`Generated ${indexFile}`))
 	}
 
 	console.log(chalk.green("Method registration files generated successfully."))
@@ -365,7 +365,7 @@ export const serviceHandlers: Record<string, ServiceHandlerConfig> = {${serviceC
 
 	const configPath = path.join(ROOT_DIR, "src", "core", "controller", "grpc-service-config.ts")
 	await fs.writeFile(configPath, content)
-	console.log(chalk.green(`Generated service configuration at ${configPath}`))
+	//console.log(chalk.green(`Generated service configuration at ${configPath}`))
 }
 
 /**
@@ -415,7 +415,7 @@ service ${serviceClassName} {
 			// Write the template proto file
 			const protoFilePath = path.join(SCRIPT_DIR, `${serviceName}.proto`)
 			await fs.writeFile(protoFilePath, protoContent)
-			console.log(chalk.green(`Created template proto file at ${protoFilePath}`))
+			//console.log(chalk.green(`Created template proto file at ${protoFilePath}`))
 		}
 	}
 }

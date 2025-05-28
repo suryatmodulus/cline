@@ -113,9 +113,9 @@ const extensionContext: vscode.ExtensionContext = {
 			return {
 				persistent: false,
 				description: undefined,
-				replace: function (variable: string, value: string, options?: vscode.EnvironmentVariableMutatorOptions): void {},
-				append: function (variable: string, value: string, options?: vscode.EnvironmentVariableMutatorOptions): void {},
-				prepend: function (variable: string, value: string, options?: vscode.EnvironmentVariableMutatorOptions): void {},
+				replace: function (variable: string, value: string, options?: vscode.EnvironmentVariableMutatorOptions): void { },
+				append: function (variable: string, value: string, options?: vscode.EnvironmentVariableMutatorOptions): void { },
+				prepend: function (variable: string, value: string, options?: vscode.EnvironmentVariableMutatorOptions): void { },
 				get: function (variable: string): vscode.EnvironmentVariableMutator | undefined {
 					return undefined
 				},
@@ -126,9 +126,9 @@ const extensionContext: vscode.ExtensionContext = {
 						collection: vscode.EnvironmentVariableCollection,
 					) => any,
 					thisArg?: any,
-				): void {},
-				delete: function (variable: string): void {},
-				clear: function (): void {},
+				): void { },
+				delete: function (variable: string): void { },
+				clear: function (): void { },
 				[Symbol.iterator]: function (): Iterator<
 					[variable: string, mutator: vscode.EnvironmentVariableMutator],
 					any,
@@ -140,9 +140,9 @@ const extensionContext: vscode.ExtensionContext = {
 		},
 		persistent: false,
 		description: undefined,
-		replace: function (variable: string, value: string, options?: vscode.EnvironmentVariableMutatorOptions): void {},
-		append: function (variable: string, value: string, options?: vscode.EnvironmentVariableMutatorOptions): void {},
-		prepend: function (variable: string, value: string, options?: vscode.EnvironmentVariableMutatorOptions): void {},
+		replace: function (variable: string, value: string, options?: vscode.EnvironmentVariableMutatorOptions): void { },
+		append: function (variable: string, value: string, options?: vscode.EnvironmentVariableMutatorOptions): void { },
+		prepend: function (variable: string, value: string, options?: vscode.EnvironmentVariableMutatorOptions): void { },
 		get: function (variable: string): vscode.EnvironmentVariableMutator | undefined {
 			return undefined
 		},
@@ -156,8 +156,8 @@ const extensionContext: vscode.ExtensionContext = {
 		): void {
 			throw new Error("environmentVariableCollection.forEach not implemented")
 		},
-		delete: function (variable: string): void {},
-		clear: function (): void {},
+		delete: function (variable: string): void { },
+		clear: function (): void { },
 		[Symbol.iterator]: function (): Iterator<[variable: string, mutator: vscode.EnvironmentVariableMutator], any, any> {
 			throw new Error("environmentVariableCollection.Iterator not implemented")
 		},
@@ -172,7 +172,7 @@ const extensionContext: vscode.ExtensionContext = {
 		extensionUri: stubUri("/tmp/vscode/extension"),
 		packageJSON: {},
 		exports: {},
-		activate: async () => {},
+		activate: async () => { },
 		extensionKind: vscode.ExtensionKind.UI,
 	},
 
@@ -186,12 +186,12 @@ extensionContext.secrets = new SecretStore()
 const outputChannel: vscode.OutputChannel = {
 	append: (text) => process.stdout.write(text),
 	appendLine: (line) => console.log(line),
-	clear: () => {},
-	show: () => {},
-	hide: () => {},
-	dispose: () => {},
+	clear: () => { },
+	show: () => { },
+	hide: () => { },
+	dispose: () => { },
 	name: "",
-	replace: function (value: string): void {},
+	replace: function (value: string): void { },
 }
 
 function postMessage(message: ExtensionMessage): Promise<boolean> {
