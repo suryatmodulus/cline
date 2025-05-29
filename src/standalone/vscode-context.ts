@@ -53,7 +53,7 @@ function createMemento(): vscode.Memento {
 
 class SecretStore {
 	// A simple key-value store for secrets backed by a JSON file. This is not secure, and it is not thread-safe.
-	private store = new Map<string, string>()
+	private data = new Map<string, string>()
 	private filePath: string
 
 	constructor() {
@@ -67,27 +67,27 @@ class SecretStore {
 			const data = JSON.parse(fs.readFileSync(this.filePath, "utf-8"))
 			Object.entries(data).forEach(([k, v]) => {
 				if (typeof v === "string") {
-					this.store.set(k, v)
+					this.data.set(k, v)
 				}
 			})
 		}
 	}
 
 	private save(): void {
-		fs.writeFileSync(this.filePath, JSON.stringify(Object.fromEntries(this.store), null, 2))
+		fs.writeFileSync(this.filePath, JSON.stringify(Object.fromEntries(this.data), null, 2))
 	}
 
 	get(key: string): string | undefined {
-		return this.store.get(key)
+		return this.data.get(key)
 	}
 
-	storeSecret(key: string, value: string): void {
-		this.store.set(key, value)
+	store(key: string, value: string): void {
+		this.data.set(key, value)
 		this.save()
 	}
 
 	delete(key: string): void {
-		this.store.delete(key)
+		this.data.delete(key)
 		this.save()
 	}
 }
@@ -114,9 +114,9 @@ const extensionContext: vscode.ExtensionContext = {
 			return {
 				persistent: false,
 				description: undefined,
-				replace: function (variable: string, value: string, options?: vscode.EnvironmentVariableMutatorOptions): void { },
-				append: function (variable: string, value: string, options?: vscode.EnvironmentVariableMutatorOptions): void { },
-				prepend: function (variable: string, value: string, options?: vscode.EnvironmentVariableMutatorOptions): void { },
+				replace: function (variable: string, value: string, options?: vscode.EnvironmentVariableMutatorOptions): void {},
+				append: function (variable: string, value: string, options?: vscode.EnvironmentVariableMutatorOptions): void {},
+				prepend: function (variable: string, value: string, options?: vscode.EnvironmentVariableMutatorOptions): void {},
 				get: function (variable: string): vscode.EnvironmentVariableMutator | undefined {
 					return undefined
 				},
@@ -127,9 +127,9 @@ const extensionContext: vscode.ExtensionContext = {
 						collection: vscode.EnvironmentVariableCollection,
 					) => any,
 					thisArg?: any,
-				): void { },
-				delete: function (variable: string): void { },
-				clear: function (): void { },
+				): void {},
+				delete: function (variable: string): void {},
+				clear: function (): void {},
 				[Symbol.iterator]: function (): Iterator<
 					[variable: string, mutator: vscode.EnvironmentVariableMutator],
 					any,
@@ -141,9 +141,9 @@ const extensionContext: vscode.ExtensionContext = {
 		},
 		persistent: false,
 		description: undefined,
-		replace: function (variable: string, value: string, options?: vscode.EnvironmentVariableMutatorOptions): void { },
-		append: function (variable: string, value: string, options?: vscode.EnvironmentVariableMutatorOptions): void { },
-		prepend: function (variable: string, value: string, options?: vscode.EnvironmentVariableMutatorOptions): void { },
+		replace: function (variable: string, value: string, options?: vscode.EnvironmentVariableMutatorOptions): void {},
+		append: function (variable: string, value: string, options?: vscode.EnvironmentVariableMutatorOptions): void {},
+		prepend: function (variable: string, value: string, options?: vscode.EnvironmentVariableMutatorOptions): void {},
 		get: function (variable: string): vscode.EnvironmentVariableMutator | undefined {
 			return undefined
 		},
@@ -157,8 +157,8 @@ const extensionContext: vscode.ExtensionContext = {
 		): void {
 			throw new Error("environmentVariableCollection.forEach not implemented")
 		},
-		delete: function (variable: string): void { },
-		clear: function (): void { },
+		delete: function (variable: string): void {},
+		clear: function (): void {},
 		[Symbol.iterator]: function (): Iterator<[variable: string, mutator: vscode.EnvironmentVariableMutator], any, any> {
 			throw new Error("environmentVariableCollection.Iterator not implemented")
 		},
@@ -173,7 +173,7 @@ const extensionContext: vscode.ExtensionContext = {
 		extensionUri: stubUri("/tmp/vscode/extension"),
 		packageJSON: {},
 		exports: {},
-		activate: async () => { },
+		activate: async () => {},
 		extensionKind: vscode.ExtensionKind.UI,
 	},
 
@@ -187,12 +187,12 @@ extensionContext.secrets = new SecretStore()
 const outputChannel: vscode.OutputChannel = {
 	append: (text) => process.stdout.write(text),
 	appendLine: (line) => console.log(line),
-	clear: () => { },
-	show: () => { },
-	hide: () => { },
-	dispose: () => { },
+	clear: () => {},
+	show: () => {},
+	hide: () => {},
+	dispose: () => {},
 	name: "",
-	replace: function (value: string): void { },
+	replace: function (value: string): void {},
 }
 
 function postMessage(message: ExtensionMessage): Promise<boolean> {
