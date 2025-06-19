@@ -635,7 +635,6 @@ async function cleanup() {
 	await rmdir(path.join(ROOT_DIR, "src/generated"))
 
 	// Clean up generated files that were moved.
-	await fs.rm(path.join(ROOT_DIR, "src/hosts/vscode/client/host-grpc-client.ts"), { force: true })
 	await fs.rm(path.join(ROOT_DIR, "src/standalone/services/host-grpc-client.ts"), { force: true })
 	await rmdir(path.join(ROOT_DIR, "src/standalone/services"))
 
