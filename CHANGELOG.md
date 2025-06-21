@@ -2,8 +2,6 @@
 
 ## 3.18.0
 
-### Minor Changes
-
 -   e2f9c38: Migrate fetchUserCreditsData to protobus
 -   b26997a: Migrate authStateChanged to protobus
 
