@@ -1,5 +1,12 @@
 # Changelog
 
+## 3.18.0
+
+### Minor Changes
+
+-   e2f9c38: Migrate fetchUserCreditsData to protobus
+-   b26997a: Migrate authStateChanged to protobus
+
 ## [3.17.15]
 
 -   Fix LiteLLM provider to properly respect selected model IDs when switching between Plan and Act modes (Thanks @sammcj!)
